@@ -38,7 +38,7 @@ pipeline {
         sh "docker -H ssh://${BUILD_HOST} push ${DOCKERHUB_USER}/dockerkvs_web:${BUILD_TIMESTAMP}"
         sh "docker -H ssh://${BUILD_HOST} push ${DOCKERHUB_USER}/dockerkvs_app:${BUILD_TIMESTAMP}"
       }
-    }pw
+    }
     stage('Deploy') {
       steps {
         sh "cat docker-compose.prod.yml"
