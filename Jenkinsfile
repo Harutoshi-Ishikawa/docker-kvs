@@ -2,8 +2,8 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_USER = "harutoshiishikawa"
-    BUILD_HOST = "root@3.113.247.75"
-    PROD_HOST = "root@18.183.41.151"
+    BUILD_HOST = "root@18.183.93.60"
+    PROD_HOST = "root@18.181.236.151"
     BUILD_TIMESTAMP = sh(script: "date +%Y%m%d-%H%M%S", returnStdout: true).trim()
   }
   stages {
@@ -38,7 +38,7 @@ pipeline {
         sh "docker -H ssh://${BUILD_HOST} push ${DOCKERHUB_USER}/dockerkvs_web:${BUILD_TIMESTAMP}"
         sh "docker -H ssh://${BUILD_HOST} push ${DOCKERHUB_USER}/dockerkvs_app:${BUILD_TIMESTAMP}"
       }
-    }
+    }pw
     stage('Deploy') {
       steps {
         sh "cat docker-compose.prod.yml"
